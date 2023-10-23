@@ -1,0 +1,13 @@
+export { default as toasts } from 'utils/toasts';
+export { default as setAuthPageBackgroundColor } from 'utils/setAuthPageBackgroundColor';
+export { default as isAuthPage } from 'utils/isAuthPage';
+export { default as getAuthPages } from 'utils/getAuthPages';
+export { default as setInputFontSize } from 'utils/setInputFontSize';
+export { default as setInputFontColor } from 'utils/setInputFontColor';
+export { default as setInputPadding } from 'utils/setInputPadding';
+export { default as setInputBorderRadius } from 'utils/setInputBorderRadius';
+export { default as setInputBorderColor } from 'utils/setInputBorderColor';
+export { default as setInputHeight } from 'utils/setInputHeight';
+export { default as setIconHoverEffect } from 'utils/setIconHoverEffect';
+export { default as setIconFill } from 'utils/setIconFill';
+export { default as setButtonColor } from 'utils/setButtonColor';
