@@ -8,6 +8,7 @@ import PublicRoute from 'components/PublicRoute';
 import pagesPath from 'constants/pagesPath';
 import PrivateRoute from 'components/PrivateRoute';
 import TablePage from 'pages/TablePage';
+import EditItem from 'components/EditItem';
 
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const AboutPage = lazy(() => import('pages/AboutPage'));
@@ -30,7 +31,9 @@ const App = () => {
           <Route
             path={pagesPath.tablePath}
             element={<PrivateRoute element={<TablePage />} />}
-          ></Route>
+          >
+            <Route path={`:${pagesPath.dynamicParam}`} element={<EditItem />} />
+          </Route>
           <Route path='*' element={<NotFoundPage />} />
         </Route>
       </Routes>

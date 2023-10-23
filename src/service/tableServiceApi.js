@@ -33,58 +33,54 @@ class TableServiceApi {
     });
   }
 
-  addContact(data) {
+  // addContact(data) {
+  //   const options = {
+  //     method: 'POST',
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     },
+  //   };
+
+  //   return fetch(`${this.#BASE_URL}/contacts`, options).then((response) => {
+  //     if (!response.ok) {
+  //       throw new Error('Adding a contact failed');
+  //     }
+  //     return response.json();
+  //   });
+  // }
+
+  // deleteContact(id) {
+  //   const options = {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     },
+  //   };
+
+  //   return fetch(`${this.#BASE_URL}/contacts/${id}`, options).then(
+  //     (response) => {
+  //       if (!response.ok) {
+  //         throw new Error('Deleting a contact failed');
+  //       }
+  //       return response.json();
+  //     }
+  //   );
+  // }
+
+  updateItem({ id, data }) {
     const options = {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     };
 
-    return fetch(`${this.#BASE_URL}/contacts`, options).then((response) => {
-      if (!response.ok) {
-        throw new Error('Adding a contact failed');
-      }
+    return fetch(`${this.#BASE_URL}/table/${id}/`, options).then((response) => {
+      console.log(response);
       return response.json();
     });
-  }
-
-  deleteContact(id) {
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    };
-
-    return fetch(`${this.#BASE_URL}/contacts/${id}`, options).then(
-      (response) => {
-        if (!response.ok) {
-          throw new Error('Deleting a contact failed');
-        }
-        return response.json();
-      }
-    );
-  }
-
-  updateContact({ id, data }) {
-    const options = {
-      method: 'PATCH',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    };
-
-    return fetch(`${this.#BASE_URL}/contacts/${id}`, options).then(
-      (response) => {
-        if (!response.ok) {
-          throw new Error('Contact update failed');
-        }
-        return response.json();
-      }
-    );
   }
 }
 

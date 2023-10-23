@@ -9,9 +9,8 @@ export const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  display: ${({ isContactsPage }) => (isContactsPage ? 'flex' : 'block')};
-  gap: ${({ isContactsPage, theme }) =>
-    isContactsPage ? theme.primaryGap : 0}px;
+  display: ${({ isTablePage }) => (isTablePage ? 'flex' : 'block')};
+  gap: ${({ isTablePage, theme }) => (isTablePage ? theme.primaryGap : 0)}px;
   width: 1200px;
   padding-left: ${({ theme }) => theme.padding.paddingContainer}px;
   padding-right: ${({ theme }) => theme.padding.paddingContainer}px;

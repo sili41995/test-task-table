@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Container, Header, Main, Section } from './SharedLayout.styled';
 import Navigation from 'components/Navigation';
 import Loader from 'components/Loader';
-import { setAuthPageBackgroundColor } from 'utils';
+import { isTablePage, setAuthPageBackgroundColor } from 'utils';
 
 const SharedLayout = () => {
   const { pathname } = useLocation();
@@ -19,7 +19,7 @@ const SharedLayout = () => {
       </Header>
       <Main>
         <Section>
-          <Container>
+          <Container isTablePage={isTablePage(pathname)}>
             <Suspense fallback={<Loader />}>
               <Outlet />
             </Suspense>

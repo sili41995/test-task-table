@@ -1,7 +1,15 @@
-import EmptyTableMessage from 'components/EmptyTableMessage';
 import { useSelector } from 'react-redux';
 import { selectItems } from 'redux/table/selectors';
-import { Container } from './Table.styled';
+import {
+  Body,
+  Container,
+  Head,
+  Header,
+  Row,
+  TableContainer,
+} from './Table.styled';
+import TableListItem from 'components/TableListItem';
+import DefaultMessage from 'components/DefaultMessage';
 
 const Table = () => {
   const items = useSelector(selectItems);
@@ -17,13 +25,24 @@ const Table = () => {
   return (
     <Container>
       {!!items.length ? (
-        <Table>
-          {items.map((item) => (
-            <TableListItem item={item} key={item.id} />
-          ))}
-        </Table>
+        <TableContainer>
+          <Head>
+            <Row>
+              <Header>Name</Header>
+              <Header>Email</Header>
+              <Header>Birthday</Header>
+              <Header>Phone</Header>
+              <Header>Address</Header>
+            </Row>
+          </Head>
+          <Body>
+            {items.map((item, index) => (
+              <TableListItem item={item} key={item.id} rowIndex={index} />
+            ))}
+          </Body>
+        </TableContainer>
       ) : (
-        <EmptyTableMessage />
+        <DefaultMessage message='Table is empty' />
       )}
     </Container>
   );

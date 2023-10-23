@@ -11,3 +11,4 @@ export { default as setInputHeight } from 'utils/setInputHeight';
 export { default as setIconHoverEffect } from 'utils/setIconHoverEffect';
 export { default as setIconFill } from 'utils/setIconFill';
 export { default as setButtonColor } from 'utils/setButtonColor';
+export { default as isTablePage } from 'utils/isTablePage';

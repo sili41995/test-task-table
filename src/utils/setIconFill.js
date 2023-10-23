@@ -6,6 +6,12 @@ function setIconFill({ btnType }) {
     case iconBtnType.toggleShowPassword:
       return theme.colors.primaryColor;
 
+    case iconBtnType.accept:
+      return theme.colors.greenIconColor;
+
+    case iconBtnType.cancel:
+      return theme.colors.redIconColor;
+
     default:
       return theme.colors.lightgreyIconColor;
   }

@@ -12,6 +12,7 @@ const Input = forwardRef(
       children,
       action,
       right = 0,
+      fieldIconSize = 18,
       ...otherProps
     },
     ref
@@ -23,9 +24,9 @@ const Input = forwardRef(
         {fieldIcon}
         {btnType && (
           <IconButton
-            top="center"
+            top='center'
             right={right}
-            position="absolute"
+            position='absolute'
             btnType={btnType}
             width={44}
             height={35}

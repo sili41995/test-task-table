@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import initialState from 'redux/initialState';
-import { fetchItems } from './operations';
+import { fetchItems, updateItem } from './operations';
 
 const handlePending = (state) => ({
   ...state,
@@ -25,9 +25,20 @@ const tableSlice = createSlice({
         error: initialState.table.error,
         items: payload,
       }))
+      .addCase(updateItem.fulfilled, (state, { payload }) => ({
+        ...state,
+        isLoading: false,
+        items: [...state.items.filter(({ id }) => id !== payload.id), payload],
+      }))
 
-      .addMatcher(isAnyOf(fetchItems.pending), handlePending)
-      .addMatcher(isAnyOf(fetchItems.rejected), handleRejected);
+      .addMatcher(
+        isAnyOf(fetchItems.pending, updateItem.pending),
+        handlePending
+      )
+      .addMatcher(
+        isAnyOf(fetchItems.rejected, updateItem.rejected),
+        handleRejected
+      );
   },
 });
 
