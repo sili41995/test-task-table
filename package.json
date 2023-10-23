@@ -1,6 +1,5 @@
 {
   "name": "test-task-table",
-  "homepage": "https://sili41995.github.io/test-task-table/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

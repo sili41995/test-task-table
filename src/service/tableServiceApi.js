@@ -1,4 +1,4 @@
-class ContactsServiceApi {
+class TableServiceApi {
   #BASE_URL = 'http://146.190.118.121/api';
 
   loginUser(data, signal) {
@@ -16,7 +16,7 @@ class ContactsServiceApi {
     );
   }
 
-  fetchContacts(signal) {
+  fetchItems(signal) {
     const options = {
       signal,
       method: 'GET',
@@ -25,9 +25,9 @@ class ContactsServiceApi {
       },
     };
 
-    return fetch(`${this.#BASE_URL}/contacts`, options).then((response) => {
+    return fetch(`${this.#BASE_URL}/table/`, options).then((response) => {
       if (!response.ok) {
-        throw new Error('Loading contacts failed');
+        throw new Error('Loading table failed');
       }
       return response.json();
     });
@@ -88,6 +88,6 @@ class ContactsServiceApi {
   }
 }
 
-const contactsServiceApi = new ContactsServiceApi();
+const tableServiceApi = new TableServiceApi();
 
-export default contactsServiceApi;
+export default tableServiceApi;

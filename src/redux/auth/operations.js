@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import contactsServiceApi from 'service/contactsServiceApi';
+import contactsServiceApi from 'service/tableServiceApi';
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',

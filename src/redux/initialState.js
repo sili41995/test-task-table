@@ -3,6 +3,12 @@ const initialState = {
     isLoggedIn: false,
     isLoading: false,
   },
+  table: {
+    items: [],
+    isLoading: false,
+    isLoaded: false,
+    error: null,
+  },
 };
 
 export default initialState;
