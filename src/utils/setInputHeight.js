@@ -5,6 +5,9 @@ const setInputHeight = (inputType) => {
     case formType.authForm:
       return '60px';
 
+    case formType.itemForm:
+      return '40px';
+
     default:
       return '50px';
   }

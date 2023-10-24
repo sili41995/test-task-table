@@ -36,7 +36,6 @@ const App = () => {
             path={`${pagesPath.tablePath}/:${pagesPath.dynamicParam}`}
             element={<EditItemPage />}
           />
-
           <Route path='*' element={<NotFoundPage />} />
         </Route>
       </Routes>

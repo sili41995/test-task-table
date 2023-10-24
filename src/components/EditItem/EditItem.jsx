@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { selectItems } from 'redux/table/selectors';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { selectIsLoading } from 'redux/table/selectors';
 import { Buttons, Container, Form, Title } from './EditItem.styled';
 import { GoX } from 'react-icons/go';
 import { GiCheckMark } from 'react-icons/gi';
@@ -13,37 +12,37 @@ import { getItemInfo, toasts } from 'utils';
 import { updateItem } from 'redux/table/operations';
 import pagesPath from 'constants/pagesPath';
 import 'react-toastify/dist/ReactToastify.css';
+import { BsPersonFill } from 'react-icons/bs';
+import { IoMdMail } from 'react-icons/io';
+import { LiaBirthdayCakeSolid } from 'react-icons/lia';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { BiHomeAlt } from 'react-icons/bi';
+import formType from 'constants/formType';
 
-const EditItem = () => {
-  const [item, setItem] = useState(null);
-  const items = useSelector(selectItems);
-  const { id } = useParams();
+const EditItem = ({ item }) => {
+  const { name, email, birthday_date, phone_number, address } = item;
   const dispatch = useDispatch();
-  const targetItem = items.find(({ id: itemId }) => itemId === Number(id));
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const isLoading = useSelector(selectIsLoading);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    setItem(targetItem);
-  }, [items, targetItem]);
-
-  const navigateToMain = () => {
-    navigate(`/${pagesPath.tablePath}`);
+  const handleCancelBtnClick = () => {
+    navigate(location.state?.from ?? `/${pagesPath.tablePath}`);
   };
 
   const handleFormSubmit = (data) => {
     const itemInfo = getItemInfo(data);
 
-    dispatch(updateItem({ itemInfo, id }))
+    dispatch(updateItem({ itemInfo, id: item.id }))
       .unwrap()
       .then(() => {
         toasts.successToast('Item updated successfully');
-        navigateToMain();
+        handleCancelBtnClick();
       })
       .catch(() => {
         toasts.errorToast('Item update failed');
@@ -56,77 +55,82 @@ const EditItem = () => {
         <Title>Table row editing</Title>
         <Form onSubmit={handleSubmit(handleFormSubmit)}>
           <Input
-            defaultValue={item.name}
+            defaultValue={name}
             settings={{
               ...register('name', { required: true, maxLength: 255 }),
             }}
             type='text'
             placeholder='Name'
             inputWrap
-            // fieldIcon={<FaUser />}
+            fieldIcon={<BsPersonFill />}
             fieldIconSize={18}
+            inputType={formType.itemForm}
           />
           {errors.name?.type === 'maxLength' &&
             toasts.errorToast('Name max length is 255 characters')}
           {errors.name?.type === 'required' &&
             toasts.errorToast('Name is required')}
           <Input
-            defaultValue={item.email}
+            defaultValue={email}
             settings={{
               ...register('email', { required: true, maxLength: 254 }),
             }}
             type='email'
             placeholder='Email'
             inputWrap
-            // fieldIcon={<FaUser />}
+            fieldIcon={<IoMdMail />}
             fieldIconSize={18}
+            inputType={formType.itemForm}
           />
           {errors.email?.type === 'maxLength' &&
             toasts.errorToast('Email max length is 254 characters')}
           {errors.email?.type === 'required' &&
             toasts.errorToast('Email is required')}
           <Input
-            defaultValue={item.birthday_date}
+            defaultValue={birthday_date}
             settings={{ ...register('birthday_date', { required: true }) }}
             type='text'
             placeholder='Birthday date'
             pattern='[0-9]{2}-[0-9]{2}-[0-9]{2}'
             title='dd-mm-yy'
             inputWrap
-            // fieldIcon={<FaUser />}
+            fieldIcon={<LiaBirthdayCakeSolid />}
             fieldIconSize={18}
+            inputType={formType.itemForm}
           />
           {errors.birthday_date?.type === 'required' &&
             toasts.errorToast('Birthday date is required')}
           <Input
-            defaultValue={item.phone_number}
+            defaultValue={phone_number}
             settings={{
               ...register('phone_number', { required: true, maxLength: 20 }),
             }}
             type='tel'
             placeholder='Phone number'
             inputWrap
-            // fieldIcon={<FaUser />}
+            fieldIcon={<FaPhoneAlt />}
             fieldIconSize={18}
+            inputType={formType.itemForm}
           />
           {errors.phone_number?.type === 'maxLength' &&
             toasts.errorToast('Phone max length is 20 characters')}
           {errors.phone_number?.type === 'required' &&
             toasts.errorToast('Phone is required')}
           <Input
-            defaultValue={item.address}
+            defaultValue={address}
             settings={{ ...register('address', { required: true }) }}
             type='text'
             placeholder='Address'
             inputWrap
-            // fieldIcon={<FaUser />}
+            fieldIcon={<BiHomeAlt />}
             fieldIconSize={18}
+            inputType={formType.itemForm}
           />
           {errors.address?.type === 'required' &&
             toasts.errorToast('Address is required')}
           <Buttons>
             <IconButton
-              // disabled={isLoading}
+              disabled={isLoading}
               btnType={iconBtnType.accept}
               width={44}
               height={35}
@@ -138,7 +142,7 @@ const EditItem = () => {
               btnType={iconBtnType.cancel}
               width={44}
               height={35}
-              onBtnClick={navigateToMain}
+              onBtnClick={handleCancelBtnClick}
             >
               <GoX />
             </IconButton>

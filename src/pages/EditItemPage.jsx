@@ -1,12 +1,31 @@
 import EditItem from 'components/EditItem';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectIsLoaded } from 'redux/table/selectors';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import tableServiceApi from 'service/tableServiceApi';
+import { toasts } from 'utils';
 
 const EditItemPage = () => {
-  const isLoaded = useSelector(selectIsLoaded);
+  const [item, setItem] = useState(null);
+  const { id } = useParams();
 
-  return isLoaded && <EditItem />;
+  useEffect(() => {
+    console.log(item);
+  });
+
+  useEffect(() => {
+    const getItem = async (id) => {
+      try {
+        const response = await tableServiceApi.fetchItemById(id);
+        setItem(response);
+      } catch (error) {
+        toasts.errorToast(error.message);
+      }
+    };
+
+    getItem(id);
+  }, [id]);
+
+  return item && <EditItem item={item} />;
 };
 
 export default EditItemPage;

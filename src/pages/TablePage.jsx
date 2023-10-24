@@ -18,8 +18,8 @@ const TablePage = ({ itemsPerPage = 10 }) => {
   useEffect(() => {
     if (isFirstRender.current && !page) {
       setSearchParams({ page: 1 });
-      isFirstRender.current = false;
     }
+    isFirstRender.current = false;
   });
 
   useEffect(() => {
