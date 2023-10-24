@@ -12,6 +12,9 @@ function setIconFill({ btnType }) {
     case iconBtnType.cancel:
       return theme.colors.redIconColor;
 
+    case iconBtnType.logout:
+      return theme.colors.redIconColor;
+
     default:
       return theme.colors.lightgreyIconColor;
   }

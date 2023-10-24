@@ -12,6 +12,9 @@ function setButtonColor({ btnType }) {
     case iconBtnType.cancel:
       return theme.colors.redBtnColor;
 
+    case iconBtnType.logout:
+      return theme.colors.redBtnColor;
+
     default:
       return theme.colors.lightgreyBtnColor;
   }

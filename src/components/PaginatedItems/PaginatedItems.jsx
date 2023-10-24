@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
-import ReactPaginate from 'react-paginate';
 import { useSelector } from 'react-redux';
 import { selectCount } from 'redux/table/selectors';
+import { PaginateContainer } from './PaginatedItems.styled';
 
 export const PaginatedItems = ({ itemsPerPage, setItemOffset }) => {
   const count = useSelector(selectCount);
@@ -9,14 +9,12 @@ export const PaginatedItems = ({ itemsPerPage, setItemOffset }) => {
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % count;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    console.log(event.selected);
     setItemOffset(newOffset);
   };
 
   return createPortal(
-    <ReactPaginate
+    <PaginateContainer
       breakLabel='...'
       nextLabel='next >'
       onPageChange={handlePageClick}
@@ -24,6 +22,8 @@ export const PaginatedItems = ({ itemsPerPage, setItemOffset }) => {
       pageCount={pageCount}
       previousLabel='< previous'
       renderOnZeroPageCount={null}
+      activeLinkClassName='active-page'
+      className='pagination-container'
     />,
     document.getElementById('container')
   );
