@@ -24,7 +24,6 @@ class TableServiceApi {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     };
-
     return fetch(
       `${this.#BASE_URL}/table?limit=${itemsPerPage}&offset=${itemOffset}`,
       options
