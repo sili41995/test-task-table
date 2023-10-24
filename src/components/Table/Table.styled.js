@@ -5,7 +5,9 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const TableContainer = styled.table``;
+export const TableContainer = styled.table`
+  width: 100%;
+`;
 
 export const Head = styled.thead`
   & tr {

@@ -5,8 +5,13 @@ const getItemInfo = (item = {}) => {
   const day = parts[0];
   const month = parts[1];
   const year = parts[2];
+  const currentYear = new Date().getFullYear() % 100;
 
-  const newDate = new Date((year < 23 ? '20' : '19') + year, month - 1, day);
+  const newDate = new Date(
+    (year < currentYear ? '20' : '19') + year,
+    month - 1,
+    day
+  );
 
   const newDateStr =
     newDate.getFullYear() +

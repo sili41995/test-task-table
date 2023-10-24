@@ -9,10 +9,6 @@ const EditItemPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(item);
-  });
-
-  useEffect(() => {
     const getItem = async (id) => {
       try {
         const response = await tableServiceApi.fetchItemById(id);
