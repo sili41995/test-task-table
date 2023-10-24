@@ -24,27 +24,3 @@ export const updateItem = createAsyncThunk(
     }
   }
 );
-
-// export const addContact = createAsyncThunk(
-//   'contacts/addContact',
-//   async (contact, { rejectWithValue }) => {
-//     try {
-//       const response = await contactsServiceApi.addContact(contact);
-//       return response;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const deleteContact = createAsyncThunk(
-//   'contacts/deleteContact',
-//   async (id, { rejectWithValue }) => {
-//     try {
-//       const response = await contactsServiceApi.deleteContact(id);
-//       return response;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );

@@ -24,8 +24,6 @@ const theme = {
     yellowIconColor: '#ffb422',
     lightgreyIconColor: '#555555',
     borderColor: 'rgba(137, 137, 137, 0.43)',
-    contactPrimaryTextColor: '#636363',
-    contactSecondaryTextColor: '#696969',
   },
   shadows: {
     primaryShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',

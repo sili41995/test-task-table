@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { selectIsLoading } from 'redux/table/selectors';
 import { Buttons, Container, Form, Title } from './EditItem.styled';
 import { GoX } from 'react-icons/go';
@@ -18,12 +18,12 @@ import { LiaBirthdayCakeSolid } from 'react-icons/lia';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { BiHomeAlt } from 'react-icons/bi';
 import formType from 'constants/formType';
+import { useEffect } from 'react';
 
-const EditItem = ({ item }) => {
+const EditItem = ({ item, location }) => {
   const { name, email, birthday_date, phone_number, address } = item;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
   const isLoading = useSelector(selectIsLoading);
   const {
     register,
@@ -31,8 +31,12 @@ const EditItem = ({ item }) => {
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    console.log(location);
+  });
+
   const handleCancelBtnClick = () => {
-    navigate(location.state?.from ?? `/${pagesPath.tablePath}`);
+    navigate(location?.from ?? `/${pagesPath.tablePath}`);
   };
 
   const handleFormSubmit = (data) => {
