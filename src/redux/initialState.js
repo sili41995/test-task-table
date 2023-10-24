@@ -8,6 +8,7 @@ const initialState = {
     isLoading: false,
     isLoaded: false,
     error: null,
+    count: 0,
   },
 };
 

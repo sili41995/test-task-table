@@ -3,10 +3,10 @@ import tableServiceApi from 'service/tableServiceApi';
 
 export const fetchItems = createAsyncThunk(
   'table/fetchItems',
-  async (_, { rejectWithValue, signal }) => {
+  async (settings, { rejectWithValue, signal }) => {
     try {
-      const { results } = await tableServiceApi.fetchItems(signal);
-      return results;
+      const response = await tableServiceApi.fetchItems(settings, signal);
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -18,7 +18,6 @@ export const updateItem = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await tableServiceApi.updateItem(data);
-      console.log(response);
       return response;
     } catch (error) {
       return rejectWithValue(error.message);

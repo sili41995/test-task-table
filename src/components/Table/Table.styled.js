@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  width: 900px;
-  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 `;
 
 export const TableContainer = styled.table``;
@@ -23,10 +23,3 @@ export const Row = styled.tr`
 export const Header = styled.th`
   padding: ${({ theme }) => theme.spacing(4)};
 `;
-
-// export const List = styled.ul`
-//   list-style: none;
-//   display: flex;
-//   flex-direction: column;
-//   gap: ${({ theme }) => theme.primaryGap}px;
-// `;

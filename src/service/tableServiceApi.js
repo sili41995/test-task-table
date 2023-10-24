@@ -1,5 +1,5 @@
 class TableServiceApi {
-  #BASE_URL = 'http://146.190.118.121/api';
+  #BASE_URL = 'https://technical-task-api.icapgroupgmbh.com/api';
 
   loginUser(data, signal) {
     const options = {
@@ -16,7 +16,7 @@ class TableServiceApi {
     );
   }
 
-  fetchItems(signal) {
+  fetchItems({ itemOffset, itemsPerPage }, signal) {
     const options = {
       signal,
       method: 'GET',
@@ -25,7 +25,10 @@ class TableServiceApi {
       },
     };
 
-    return fetch(`${this.#BASE_URL}/table/`, options).then((response) => {
+    return fetch(
+      `${this.#BASE_URL}/table?limit=${itemsPerPage}&offset=${itemOffset}`,
+      options
+    ).then((response) => {
       if (!response.ok) {
         throw new Error('Loading table failed');
       }
@@ -68,19 +71,18 @@ class TableServiceApi {
   //   );
   // }
 
-  updateItem({ id, data }) {
+  updateItem({ id, itemInfo }) {
     const options = {
       method: 'PUT',
-      body: JSON.stringify(data),
+      body: JSON.stringify(itemInfo),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     };
 
-    return fetch(`${this.#BASE_URL}/table/${id}/`, options).then((response) => {
-      console.log(response);
-      return response.json();
-    });
+    return fetch(`${this.#BASE_URL}/table/${id}/`, options).then((response) =>
+      response.json()
+    );
   }
 }
 

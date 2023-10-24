@@ -11,6 +11,7 @@ const handleRejected = (state) => ({
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialState.auth,
+  reducers: { logout: () => initialState.auth },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, handlePending)
@@ -22,5 +23,7 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, handleRejected);
   },
 });
+
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

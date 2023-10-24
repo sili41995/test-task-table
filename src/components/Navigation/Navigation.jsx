@@ -4,6 +4,7 @@ import { NavContainer, List, ListItem } from './Navigation.styled';
 import PublicLinks from 'components/PublicLinks';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import pagesPath from 'constants/pagesPath';
+import PrivateLinks from 'components/PrivateLinks';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -20,7 +21,7 @@ const Navigation = () => {
           <NavLink to={aboutPagePath}>About</NavLink>
         </ListItem>
       </List>
-      {!isLoggedIn && <PublicLinks />}
+      {isLoggedIn ? <PrivateLinks /> : <PublicLinks />}
     </NavContainer>
   );
 };

@@ -23,7 +23,8 @@ const tableSlice = createSlice({
         isLoading: false,
         isLoaded: true,
         error: initialState.table.error,
-        items: payload,
+        items: payload.results,
+        count: payload.count,
       }))
       .addCase(updateItem.fulfilled, (state, { payload }) => ({
         ...state,
