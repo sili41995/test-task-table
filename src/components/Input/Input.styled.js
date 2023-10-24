@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import formType from 'constants/formType';
 import {
   setInputHeight,
   setInputBorderColor,
@@ -37,7 +38,8 @@ export const StyledInput = styled.input`
   transition: border-color ${({ theme }) => theme.transitionDurationAndFunc};
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.primaryColor};
+    border-color: ${({ theme, inputType }) =>
+      inputType === formType.filter ? false : theme.colors.primaryColor};
   }
   &:focus + svg {
     transition: color ${({ theme }) => theme.transitionDurationAndFunc};

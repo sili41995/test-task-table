@@ -1,16 +1,9 @@
 const iconBtnType = {
-  // delete: 'delete',
-  // edit: 'edit',
-  // phone: 'phone',
-  // message: 'message',
-  // chat: 'chat',
-  // filter: 'filter',
-  // logout: 'logout',
+  filter: 'filter',
   accept: 'accept',
   cancel: 'cancel',
-  // deleteTransparent: 'deleteTransparent',
   toggleShowPassword: 'toggleShowPassword',
-  // clearFilter: 'clearFilter',
+  clearFilter: 'clearFilter',
 };
 
 export default iconBtnType;

@@ -15,6 +15,9 @@ function setButtonColor({ btnType }) {
     case iconBtnType.logout:
       return theme.colors.redBtnColor;
 
+    case iconBtnType.clearFilter:
+      return 'transparent';
+
     default:
       return theme.colors.lightgreyBtnColor;
   }

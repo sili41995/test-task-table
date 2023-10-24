@@ -15,6 +15,9 @@ function setIconFill({ btnType }) {
     case iconBtnType.logout:
       return theme.colors.redIconColor;
 
+    case iconBtnType.clearFilter:
+      return theme.colors.whiteColor;
+
     default:
       return theme.colors.lightgreyIconColor;
   }

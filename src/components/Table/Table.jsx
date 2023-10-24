@@ -10,9 +10,21 @@ import {
 } from './Table.styled';
 import TableListItem from 'components/TableListItem';
 import DefaultMessage from 'components/DefaultMessage';
+import { useSearchParams } from 'react-router-dom';
+import searchParamsKeys from 'constants/searchParamsKeys';
+import { useMemo } from 'react';
+import { filterItemsByName, sortItemsByName } from 'utils';
 
 const Table = () => {
   const items = useSelector(selectItems);
+  const [searchParams] = useSearchParams();
+  const filter = searchParams.get(searchParamsKeys.FILTER_SP_KEY) ?? '';
+  const sortType = searchParams.get(searchParamsKeys.SORT_SP_KEY) ?? '';
+
+  const filteredItems = useMemo(() => {
+    const sortedItems = sortItemsByName(items, sortType);
+    return filterItemsByName(sortedItems, filter);
+  }, [filter, items, sortType]);
 
   return (
     <Container>
@@ -28,7 +40,7 @@ const Table = () => {
             </Row>
           </Head>
           <Body>
-            {items.map((item, index) => (
+            {filteredItems.map((item, index) => (
               <TableListItem item={item} key={item.id} rowIndex={index} />
             ))}
           </Body>

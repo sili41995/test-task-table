@@ -13,3 +13,7 @@ export { default as setIconFill } from 'utils/setIconFill';
 export { default as setButtonColor } from 'utils/setButtonColor';
 export { default as isTablePage } from 'utils/isTablePage';
 export { default as getItemInfo } from 'utils/getItemInfo';
+export { default as makeBlur } from 'utils/makeBlur';
+export { default as updateSortSearchParams } from 'utils/updateSortSearchParams';
+export { default as sortItemsByName } from 'utils/sortItemsByName';
+export { default as filterItemsByName } from 'utils/filterItemsByName';
