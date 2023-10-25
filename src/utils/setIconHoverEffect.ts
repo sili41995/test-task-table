@@ -1,9 +1,9 @@
-import iconBtnType from 'constants/iconBtnType';
+import IconBtnType from 'constants/iconBtnType';
 import theme from 'constants/theme';
 
-const setIconHoverEffect = (btnType) => {
+const setIconHoverEffect = (btnType: IconBtnType) => {
   switch (btnType) {
-    case iconBtnType.clearFilter:
+    case IconBtnType.clearFilter:
       return;
 
     default:

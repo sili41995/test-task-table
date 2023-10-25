@@ -1,6 +1,7 @@
 import About from 'components/About';
+import { FC } from 'react';
 
-const AboutPage = () => {
+const AboutPage: FC = () => {
   return <About />;
 };
 

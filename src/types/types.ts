@@ -16,3 +16,31 @@ export interface ICredentials {
   username: string;
   password: string;
 }
+
+export interface IFetchItemsSettings {
+  itemOffset: number;
+  itemsPerPage: number;
+}
+
+export interface IFetchItemsResponse {
+  results: IItem[];
+  count: number;
+}
+
+export interface ITableInitialState {
+  items: IItem[];
+  isLoading: boolean;
+  isLoaded: boolean;
+  error: string | null;
+  count: number;
+}
+
+export interface IAuthInitialState {
+  isLoggedIn: boolean;
+  isLoading: boolean;
+}
+
+export interface IInitialState {
+  table: ITableInitialState;
+  auth: IAuthInitialState;
+}

@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-const Toast = () => (
+const Toast: FC = () => (
   <ToastContainer
     position='top-right'
     autoClose={2000}

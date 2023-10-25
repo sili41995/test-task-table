@@ -1,14 +1,14 @@
 import { toast } from 'react-toastify';
 
-const errorToast = (message) => {
+const errorToast = (message: string) => {
   toast.error(message);
 };
 
-const successToast = (message) => {
+const successToast = (message: string) => {
   toast.success(message);
 };
 
-const warnToast = (message) => {
+const warnToast = (message: string) => {
   toast.warn(message);
 };
 

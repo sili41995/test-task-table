@@ -1,21 +1,14 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import initialState from 'redux/initialState';
 import { fetchItems, updateItem } from './operations';
+import { ITableInitialState } from 'types/types';
 
-const handlePending = (state) => ({
-  ...state,
-  isLoading: true,
-});
-
-const handleRejected = (state, { payload }) => ({
-  ...state,
-  isLoading: false,
-  error: payload,
-});
+const tableState: ITableInitialState = initialState.table;
 
 const tableSlice = createSlice({
   name: 'table',
-  initialState: initialState.table,
+  initialState: tableState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchItems.fulfilled, (state, { payload }) => ({
@@ -32,13 +25,17 @@ const tableSlice = createSlice({
         items: [...state.items.filter(({ id }) => id !== payload.id), payload],
       }))
 
-      .addMatcher(
-        isAnyOf(fetchItems.pending, updateItem.pending),
-        handlePending
-      )
+      .addMatcher(isAnyOf(fetchItems.pending, updateItem.pending), (state) => ({
+        ...state,
+        isLoading: true,
+      }))
       .addMatcher(
         isAnyOf(fetchItems.rejected, updateItem.rejected),
-        handleRejected
+        (state, { payload }) => ({
+          ...state,
+          isLoading: false,
+          error: payload as string,
+        })
       );
   },
 });

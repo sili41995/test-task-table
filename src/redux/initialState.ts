@@ -1,4 +1,6 @@
-const initialState = {
+import { IInitialState } from 'types/types';
+
+const initialState: IInitialState = {
   auth: {
     isLoggedIn: false,
     isLoading: false,

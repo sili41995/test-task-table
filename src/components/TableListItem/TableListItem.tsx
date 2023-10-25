@@ -17,7 +17,8 @@ const TableListItem: FC<IProps> = ({ item, rowIndex }) => {
   const location = useLocation();
 
   const onRowClick = () => {
-    navigate(`/${PagesPath.tablePath}/${id}`, { state: { from: location } });
+    const options = { state: { from: location } };
+    navigate(`/${PagesPath.tablePath}/${id}`, options);
   };
 
   return (

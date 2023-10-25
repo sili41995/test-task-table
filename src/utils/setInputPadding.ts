@@ -1,16 +1,16 @@
-import formType from 'constants/formType';
+import { FormType } from 'constants/formType';
 import theme from 'constants/theme';
 
-const setInputPadding = (inputType) => {
+const setInputPadding = (inputType: FormType | undefined) => {
   switch (inputType) {
-    case formType.filter:
+    case FormType.filter:
       return `
       ${theme.spacing(2)}
       ${theme.spacing(10)}
       ${theme.spacing(2)}
       ${theme.spacing(4)}`;
 
-    case formType.authForm:
+    case FormType.authForm:
       return `
       ${theme.spacing(2)}
       ${theme.spacing(10)}

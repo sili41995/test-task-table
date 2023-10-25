@@ -1,26 +1,29 @@
-import EditItem from 'components/EditItem';
-import React, { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import EditItem from 'components/EditItem';
 import tableServiceApi from 'service/tableServiceApi';
 import { toasts } from 'utils';
+import { IItem } from 'types/types';
 
-const EditItemPage = () => {
-  const [item, setItem] = useState(null);
-  const { id } = useParams();
+const EditItemPage: FC = () => {
+  const [item, setItem] = useState<IItem | null>(null);
   const location = useLocation();
   const prevLocation = useRef(location.state);
+  const { id } = useParams();
 
   useEffect(() => {
-    const getItem = async (id) => {
+    const getItem = async (id: string) => {
       try {
         const response = await tableServiceApi.fetchItemById(id);
         setItem(response);
       } catch (error) {
-        toasts.errorToast(error.message);
+        if (error instanceof Error) {
+          toasts.errorToast(error.message);
+        }
       }
     };
 
-    getItem(id);
+    id && getItem(id);
   }, [id]);
 
   return item && <EditItem item={item} location={prevLocation.current} />;

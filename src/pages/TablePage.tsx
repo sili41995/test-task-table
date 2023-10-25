@@ -1,22 +1,27 @@
+import { FC, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PaginatedItems from 'components/PaginatedItems';
 import Table from 'components/Table';
-import { useSelector } from 'react-redux';
-import { selectCount, selectIsLoaded } from 'redux/table/selectors';
-import { useDispatch } from 'react-redux';
+import {
+  selectCount,
+  selectIsLoaded,
+  selectIsLoading,
+} from 'redux/table/selectors';
 import { fetchItems } from 'redux/table/operations';
-import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import Loader from 'components/Loader';
 
-const TablePage = ({ itemsPerPage = 10 }) => {
+const TablePage: FC<{ itemsPerPage?: number }> = ({ itemsPerPage = 10 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const isLoaded = useSelector(selectIsLoaded);
-  const dispatch = useDispatch();
+  const isLoaded = useAppSelector(selectIsLoaded);
+  const count = useAppSelector(selectCount);
+  const isLoading = useAppSelector(selectIsLoading);
+  const dispatch = useAppDispatch();
   const page = searchParams.get('page');
-  const count = useSelector(selectCount);
 
   useEffect(() => {
     if (!page) {
-      setSearchParams({ page: 1 });
+      setSearchParams({ page: String(1) });
     }
   }, [page, setSearchParams]);
 
@@ -34,7 +39,7 @@ const TablePage = ({ itemsPerPage = 10 }) => {
   return (
     isLoaded && (
       <>
-        <Table />
+        {isLoading ? <Loader /> : <Table />}
         <PaginatedItems itemsPerPage={itemsPerPage} />
       </>
     )

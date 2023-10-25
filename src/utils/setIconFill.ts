@@ -1,21 +1,21 @@
-import iconBtnType from 'constants/iconBtnType';
+import IconBtnType from 'constants/iconBtnType';
 import theme from 'constants/theme';
 
-function setIconFill({ btnType }) {
+function setIconFill({ btnType }: { btnType: IconBtnType }) {
   switch (btnType) {
-    case iconBtnType.toggleShowPassword:
+    case IconBtnType.toggleShowPassword:
       return theme.colors.primaryColor;
 
-    case iconBtnType.accept:
+    case IconBtnType.accept:
       return theme.colors.greenIconColor;
 
-    case iconBtnType.cancel:
+    case IconBtnType.cancel:
       return theme.colors.redIconColor;
 
-    case iconBtnType.logout:
+    case IconBtnType.logout:
       return theme.colors.redIconColor;
 
-    case iconBtnType.clearFilter:
+    case IconBtnType.clearFilter:
       return theme.colors.whiteColor;
 
     default:

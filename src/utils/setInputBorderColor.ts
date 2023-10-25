@@ -1,9 +1,9 @@
-import formType from 'constants/formType';
+import { FormType } from 'constants/formType';
 import theme from 'constants/theme';
 
-const setInputBorderColor = (inputType) => {
+const setInputBorderColor = (inputType: FormType | undefined) => {
   switch (inputType) {
-    case formType.filter:
+    case FormType.filter:
       return theme.colors.whiteColor;
 
     default:

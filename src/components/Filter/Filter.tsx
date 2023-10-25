@@ -15,26 +15,25 @@ import { FilterContainer } from './Filter.styled';
 import { makeBlur, updateSortSearchParams } from 'utils';
 import IconButton from 'components/IconButton';
 import Input from 'components/Input';
-import sortTypes from 'constants/sortTypes';
-import searchParamsKeys from 'constants/searchParamsKeys';
 import iconBtnType from 'constants/iconBtnType';
 import { FormType } from 'constants/formType';
+import { SearchParamsKeys } from 'constants/searchParamsKeys';
+import { SortTypes } from 'constants/sortTypes';
 
 const Filter: FC = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
-  const { DESC_SORT_TYPE } = sortTypes;
-  const { FILTER_SP_KEY, SORT_SP_KEY } = searchParamsKeys;
-  const filter = searchParams.get(FILTER_SP_KEY) ?? '';
-  const deskSortType = searchParams.get(SORT_SP_KEY) === DESC_SORT_TYPE;
+  const filter = searchParams.get(SearchParamsKeys.FILTER_SP_KEY) ?? '';
+  const deskSortType =
+    searchParams.get(SearchParamsKeys.SORT_SP_KEY) === SortTypes.DESC_SORT_TYPE;
 
   useEffect(() => {
     if (!showFilter) {
-      searchParams.delete(FILTER_SP_KEY);
+      searchParams.delete(SearchParamsKeys.FILTER_SP_KEY);
       setSearchParams(searchParams);
     }
-  }, [FILTER_SP_KEY, searchParams, setSearchParams, showFilter]);
+  }, [searchParams, setSearchParams, showFilter]);
 
   useEffect(() => {
     if (filter) {
@@ -44,14 +43,18 @@ const Filter: FC = () => {
 
   const onSortBtnClick = (e: MouseEvent<HTMLButtonElement>) => {
     makeBlur(e.currentTarget);
-    updateSortSearchParams(searchParams, setSearchParams, SORT_SP_KEY);
+    updateSortSearchParams(
+      searchParams,
+      setSearchParams,
+      SearchParamsKeys.SORT_SP_KEY
+    );
   };
 
   const onFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     value
-      ? searchParams.set(FILTER_SP_KEY, value)
-      : searchParams.delete(FILTER_SP_KEY);
+      ? searchParams.set(SearchParamsKeys.FILTER_SP_KEY, value)
+      : searchParams.delete(SearchParamsKeys.FILTER_SP_KEY);
     setSearchParams(searchParams);
   };
 
@@ -61,7 +64,7 @@ const Filter: FC = () => {
   };
 
   const onClearFilterBtnClick = () => {
-    searchParams.delete(FILTER_SP_KEY);
+    searchParams.delete(SearchParamsKeys.FILTER_SP_KEY);
     setSearchParams(searchParams);
   };
 

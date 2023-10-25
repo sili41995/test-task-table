@@ -16,6 +16,8 @@ export const loginUser = createAsyncThunk<
     }
     return response;
   } catch (error) {
-    return rejectWithValue(error as string);
+    if (error instanceof Error) {
+      return rejectWithValue(error.message);
+    }
   }
 });
