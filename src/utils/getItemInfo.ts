@@ -1,14 +1,16 @@
-const getItemInfo = (item = {}) => {
+import { IItem } from 'types/types';
+
+const getItemInfo = (item: IItem) => {
   const { name, email, birthday_date, phone_number, address } = item;
 
   const parts = birthday_date.split('-');
-  const day = parts[0];
-  const month = parts[1];
-  const year = parts[2];
+  const day = Number(parts[0]);
+  const month = Number(parts[1]);
+  const year = Number(parts[2]);
   const currentYear = new Date().getFullYear() % 100;
 
   const newDate = new Date(
-    (year < currentYear ? '20' : '19') + year,
+    (year < currentYear ? 20 : 19) + year,
     month - 1,
     day
   );
