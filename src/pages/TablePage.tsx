@@ -11,7 +11,11 @@ import { fetchItems } from 'redux/table/operations';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import Loader from 'components/Loader';
 
-const TablePage: FC<{ itemsPerPage?: number }> = ({ itemsPerPage = 10 }) => {
+interface IProps {
+  itemsPerPage?: number;
+}
+
+const TablePage: FC<IProps> = ({ itemsPerPage = 10 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const isLoaded = useAppSelector(selectIsLoaded);
   const count = useAppSelector(selectCount);
@@ -36,13 +40,13 @@ const TablePage: FC<{ itemsPerPage?: number }> = ({ itemsPerPage = 10 }) => {
     }
   }, [count, dispatch, itemsPerPage, page]);
 
-  return (
-    isLoaded && (
-      <>
-        {isLoading ? <Loader /> : <Table />}
-        <PaginatedItems itemsPerPage={itemsPerPage} />
-      </>
-    )
+  return isLoaded ? (
+    <>
+      {isLoading ? <Loader /> : <Table />}
+      <PaginatedItems itemsPerPage={itemsPerPage} />
+    </>
+  ) : (
+    <Loader />
   );
 };
 
