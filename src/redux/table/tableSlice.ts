@@ -2,6 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import initialState from 'redux/initialState';
 import { fetchItems, updateItem } from './operations';
 import { ITableInitialState } from 'types/types';
+import { logout } from 'redux/auth/authSlice';
 
 const tableState: ITableInitialState = initialState.table;
 
@@ -24,7 +25,7 @@ const tableSlice = createSlice({
         isLoading: false,
         items: [...state.items.filter(({ id }) => id !== payload.id), payload],
       }))
-
+      .addCase(logout, () => ({ ...initialState.table }))
       .addMatcher(isAnyOf(fetchItems.pending, updateItem.pending), (state) => ({
         ...state,
         isLoading: true,
