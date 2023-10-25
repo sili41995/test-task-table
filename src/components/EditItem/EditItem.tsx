@@ -33,7 +33,7 @@ const EditItem: FC<IProps> = ({ item, location }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IItem>();
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const EditItem: FC<IProps> = ({ item, location }) => {
       toasts.errorToast('Phone is required');
     errors.address?.type === 'required' &&
       toasts.errorToast('Address is required');
-  });
+  }, [errors, isSubmitting]);
 
   const handleCancelBtnClick = () => {
     navigate(location?.from ?? `/${PagesPath.tablePath}`);

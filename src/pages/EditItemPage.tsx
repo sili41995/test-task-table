@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import EditItem from 'components/EditItem';

@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import tableServiceApi from 'service/tableServiceApi';
 import { ICredentials } from 'types/types';

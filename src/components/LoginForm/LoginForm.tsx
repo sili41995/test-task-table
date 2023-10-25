@@ -20,7 +20,7 @@ const LoginForm: FC = () => {
   const dispatch = useAppDispatch();
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
     watch,
   } = useForm<ICredentials>();
@@ -50,7 +50,7 @@ const LoginForm: FC = () => {
       toasts.errorToast('Password min length is 6 characters');
     errors.password?.type === 'maxLength' &&
       toasts.errorToast('Password max length is 128 characters');
-  }, [errors]);
+  }, [errors, isSubmitting]);
 
   const toggleIsShowPassword = () => {
     setIsShowPassword((prevState) => !prevState);

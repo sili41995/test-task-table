@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { FC, useEffect, useRef } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';

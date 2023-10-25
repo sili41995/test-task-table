@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import { FC } from 'react';
 import { SlLogout } from 'react-icons/sl';
 import { useLocation, useNavigate } from 'react-router-dom';
