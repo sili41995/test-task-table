@@ -1,14 +1,14 @@
-import { useSelector } from 'react-redux';
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { NavContainer, List, ListItem } from './Navigation.styled';
-import PublicLinks from 'components/PublicLinks';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+import PublicLinks from 'components/PublicLinks';
 import PrivateLinks from 'components/PrivateLinks';
-import { FC } from 'react';
 import { PagesPath } from 'constants/pagesPath';
+import { useAppSelector } from 'hooks/redux';
 
 const Navigation: FC = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const tablePagePath = `/${PagesPath.tablePath}`;
   const aboutPagePath = `/${PagesPath.aboutPath}`;
 
