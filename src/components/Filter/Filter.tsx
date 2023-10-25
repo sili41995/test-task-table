@@ -21,7 +21,7 @@ import { SearchParamsKeys } from 'constants/searchParamsKeys';
 import { SortTypes } from 'constants/sortTypes';
 
 const Filter: FC = () => {
-  const [showFilter, setShowFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
   const filter = searchParams.get(SearchParamsKeys.FILTER_SP_KEY) ?? '';

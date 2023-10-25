@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from '@emotion/react';
@@ -7,8 +6,9 @@ import App from 'components/App';
 import theme from 'constants/theme';
 import { Provider } from 'react-redux';
 import store, { persistor } from 'redux/store';
+import React from 'react';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>

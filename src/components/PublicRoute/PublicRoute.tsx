@@ -8,7 +8,7 @@ import { PagesPath } from 'constants/pagesPath';
 import { useAppSelector } from 'hooks/redux';
 
 const PublicRoute: FC<IProps> = ({ element, restricted = false }) => {
-  const isFirstRenderRef = useRef(true);
+  const isFirstRenderRef = useRef<boolean>(true);
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const location = useLocation();
   const shouldRedirect = isLoggedIn && restricted;

@@ -1,7 +1,13 @@
-class TableServiceApi {
-  #BASE_URL = 'https://technical-task-api.icapgroupgmbh.com/api';
+import {
+  ICredentials,
+  IFetchItemsSettings,
+  IUpdateItemData,
+} from 'types/types';
 
-  loginUser(data, signal) {
+class TableServiceApi {
+  private BASE_URL = 'https://technical-task-api.icapgroupgmbh.com/api';
+
+  loginUser(data: ICredentials, signal: AbortSignal) {
     const options = {
       signal,
       method: 'POST',
@@ -11,12 +17,15 @@ class TableServiceApi {
       },
     };
 
-    return fetch(`${this.#BASE_URL}/login/`, options).then((response) =>
+    return fetch(`${this.BASE_URL}/login/`, options).then((response) =>
       response.json()
     );
   }
 
-  fetchItems({ itemOffset, itemsPerPage }, signal) {
+  fetchItems(
+    { itemOffset, itemsPerPage }: IFetchItemsSettings,
+    signal: AbortSignal
+  ) {
     const options = {
       signal,
       method: 'GET',
@@ -25,7 +34,7 @@ class TableServiceApi {
       },
     };
     return fetch(
-      `${this.#BASE_URL}/table?limit=${itemsPerPage}&offset=${itemOffset}`,
+      `${this.BASE_URL}/table?limit=${itemsPerPage}&offset=${itemOffset}`,
       options
     ).then((response) => {
       if (!response.ok) {
@@ -35,7 +44,7 @@ class TableServiceApi {
     });
   }
 
-  fetchItemById(id, signal) {
+  fetchItemById(id: string, signal: AbortSignal) {
     const options = {
       signal,
       method: 'GET',
@@ -43,7 +52,7 @@ class TableServiceApi {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     };
-    return fetch(`${this.#BASE_URL}/table/${id}`, options).then((response) => {
+    return fetch(`${this.BASE_URL}/table/${id}`, options).then((response) => {
       if (!response.ok) {
         throw new Error('Loading table failed');
       }
@@ -51,7 +60,7 @@ class TableServiceApi {
     });
   }
 
-  updateItem({ id, itemInfo }) {
+  updateItem({ id, itemInfo }: IUpdateItemData) {
     const options = {
       method: 'PUT',
       body: JSON.stringify(itemInfo),
@@ -60,7 +69,7 @@ class TableServiceApi {
       },
     };
 
-    return fetch(`${this.#BASE_URL}/table/${id}/`, options).then((response) =>
+    return fetch(`${this.BASE_URL}/table/${id}/`, options).then((response) =>
       response.json()
     );
   }

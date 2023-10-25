@@ -13,18 +13,27 @@ const EditItemPage: FC = () => {
   const { id } = useParams();
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const getItem = async (id: string) => {
       try {
-        const response = await tableServiceApi.fetchItemById(id);
+        const response = await tableServiceApi.fetchItemById(
+          id,
+          controller.signal
+        );
         setItem(response);
       } catch (error) {
         if (error instanceof Error) {
-          toasts.errorToast(error.message);
+          error.name !== 'AbortError' && toasts.errorToast(error.message);
         }
       }
     };
 
     id && getItem(id);
+
+    return () => {
+      controller.abort();
+    };
   }, [id]);
 
   return item && <EditItem item={item} location={prevLocation.current} />;
